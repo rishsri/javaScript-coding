@@ -1,0 +1,26 @@
+// longest repeating chracter 
+
+
+const longestRepetingChracter = (str) => {
+    let start = 0;
+    let end = 0;
+    let max = 0;
+    let uniqueChracters = new Set()
+    
+    while(end < str?.length){
+        if(!uniqueChracters.has(str[end])){
+            uniqueChracters.add(str[end])
+            end++
+            max = Math.max(max,uniqueChracters.size )
+        }else {
+            uniqueChracters.delete(str[start])
+            start++
+        }
+    }
+    return max
+}
+
+
+console.log(longestRepetingChracter("abcabcdd"))
+
+// abc
