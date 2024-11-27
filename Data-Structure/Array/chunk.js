@@ -19,3 +19,16 @@ export default function chunk(array, size = 1) {
 
 
 }
+
+// another app 
+export default function chunk(array, size = 1) {
+  let result = [];
+
+
+
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+
+  return result;
+}
