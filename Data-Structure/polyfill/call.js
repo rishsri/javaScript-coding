@@ -24,3 +24,9 @@ Function.prototype.myCall = function(obj = {}, ...args) {
 }
 
 printAge.myCall(person1, 25)
+
+
+//--------------------------------------------
+Function.prototype.myCall = function (thisArg, ...argArray) {
+  return this.apply(thisArg,[ ...argArray])
+};
