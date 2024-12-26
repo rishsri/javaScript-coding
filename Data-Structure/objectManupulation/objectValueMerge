@@ -1,0 +1,49 @@
+
+Given an array of objects [{banana: 5, apples:5}, {pear: 6}, {apples: 5}, {banana:2}], return an object with the sum of all the fruits
+
+Ex: { apples: 10, banana: 7, pear:6 }
+
+
+const objmodification = (arr) => {
+  let result = {};
+
+  arr.forEach((val) => {
+    // Use Object.entries to loop through key-value pairs of the current object
+    for (let [key, value] of Object.entries(val)) {
+      result[key] = (result[key] || 0) + value;
+    }
+  });
+
+  return result;
+};
+
+console.log(objmodification(array)); // { apples: 10, banana: 7, pear: 6 }
+
+
+--------------------------------------------------
+
+
+const array = [
+  { banana: 5, apples: 5 },
+  { pear: 6 },
+  { apples: 5 },
+  { banana: 2 },
+]
+
+const objmodification = (arr) => {
+  let result = {}
+
+  arr.forEach((val) => {
+    for (let i in val) {
+      if (result[i]) {
+       result[i] = result[i] ? result[i] + val[i] : val[i];
+      } else {
+        result[i] = val[i]
+      }
+    }
+  })
+
+  return result
+}
+
+console.log(objmodification(array))
