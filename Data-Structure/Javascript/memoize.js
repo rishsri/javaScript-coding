@@ -17,26 +17,35 @@ const expensiveFunction = (num) => {
 
 const memozieFunction = memoize(expensiveFunction)
 
-console.log(memozieFunction(2));
 
-// -------------------------------------------
+// ______________- Advance version  with Time to leave 
 
-function memoizedAdd() {
-  let cache = {};
+function memoize(func, ttl = 5000) {
+  let cache = new Map()
+  return (...nums) => {
+    let keys = JSON.stringify(nums)
+    let now = Date.now()
 
-  return function(x, y) {
-    if (cache[x + y]) {
-      console.log('From Cache');
-      return cache[x + y];
+    if (cache.has(keys)) {
+      const { value, timeStamp } = cache.get(keys)
+      if (now - timeStamp < ttl) {
+        return value
+      } else {
+        cache.delete(keys)
+      }
     } else {
-      const result = x + y;
-      cache[x + y] = result;
-      console.log('Computed');
-      return result;
+      let result = func(...nums)
+      cache.set(keys, { value: result, timeStamp: now })
+      return result
     }
-  };
+  }
 }
 
-const add = memoizedAdd();
-console.log(add(3, 4)); // Output?
-console.log(add(3, 4)); // Output?
+const expensiveFunction = (num) => {
+  return num * 2
+}
+
+const memozieFunction = memoize(expensiveFunction)
+
+console.log(memozieFunction(2))
+
