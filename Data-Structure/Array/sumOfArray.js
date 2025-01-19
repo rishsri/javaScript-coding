@@ -17,6 +17,31 @@ const sumOfArray = (arr) => {
 
 console.log(sumOfArray(array))
 
+// -------------------------- optimised approch 
+
+const array = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 6]
+
+const sumOfArr = (arr) => {
+		const seen = new Set();
+    
+    for (let num of arr) {
+    	if(seen.has(-num)){
+      	return ([num, -num])
+      }
+      
+      seen.add(num)
+    }
+    
+    return undefined
+    
+}
+
+const sumArr = sumOfArr(array)
+console.log(sumArr)
+
+
+// -------------------
+
 
 
 const sumOfArray = (arr) => {
